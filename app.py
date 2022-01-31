@@ -42,6 +42,24 @@ class ResourceOneBlog(Resource):
         publication = Publication.query.get_or_404(id_pub)
         return post_schema.dump(publication)
 
+    def put(self, id_pub):
+        publication = Publication.query.get_or_404(id_pub)
+        
+        if 'title' in request.json:
+            publication.title = request.json['title']
+
+        if 'content' in request.json:
+            publication.content = request.json['content']
+
+        db.session.commit()
+        return post_schema.dump(publication)
+    
+    def delete(self, id_pub):
+        publication = Publication.query.get_or_404(id_pub)
+        db.session.delete(publication)
+        db.session.commit()
+        return '', 204
+
 api.add_resource(ResourceListBlogs, '/publicaciones')
 api.add_resource(ResourceOneBlog, '/publicaciones/<int:id_pub>')
 

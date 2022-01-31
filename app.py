@@ -37,13 +37,13 @@ class ResourceListBlogs(Resource):
         db.session.commit()
         return post_schema.dump(new_pub)
 
-class ResourceOnePublication(Resource):
+class ResourceOneBlog(Resource):
     def get(self, id_pub):
         publication = Publication.query.get_or_404(id_pub)
         return post_schema.dump(publication)
 
 api.add_resource(ResourceListBlogs, '/publicaciones')
-api.add_resource(ResourceListBlogs, '/publicaciones')
+api.add_resource(ResourceOneBlog '/publicaciones')
 
 
 if __name__=='__main__':

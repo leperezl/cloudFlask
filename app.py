@@ -43,7 +43,7 @@ class ResourceOneBlog(Resource):
         return post_schema.dump(publication)
 
 api.add_resource(ResourceListBlogs, '/publicaciones')
-api.add_resource(ResourceOneBlog, '/publicaciones')
+api.add_resource(ResourceOneBlog, '/publicaciones/<int:id_pub>')
 
 
 if __name__=='__main__':
